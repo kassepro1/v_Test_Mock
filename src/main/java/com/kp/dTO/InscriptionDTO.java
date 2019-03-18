@@ -1,6 +1,8 @@
 package com.kp.dTO;
 
 public class InscriptionDTO {
+    private int idDevice;
+    private int idUser;
     private String phoneNumber;
     private String imei;
     private String name;
@@ -63,5 +65,21 @@ public class InscriptionDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getIdDevice() {
+        return idDevice;
+    }
+
+    public void setIdDevice(int idDevice) {
+        this.idDevice = idDevice;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 }
