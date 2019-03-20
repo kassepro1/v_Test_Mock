@@ -66,6 +66,7 @@ public class VimoController {
             //Recuperation des donnes de l'utiisateur
             u.setCni(insDTO.getCni());
             u.setName(insDTO.getName());
+            u.setSecret("passer");
             //Recuperations des donnees du Device
             d.setImei(insDTO.getImei());
             d.setPhoneNumber(insDTO.getPhoneNumber());
