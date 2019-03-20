@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
@@ -20,6 +21,14 @@ public class Account {
     private String numCompte;
     private String iban;
     private String titulaire ;
+    private double amount ;
+    @OneToMany(cascade=CascadeType.ALL, targetEntity=Transaction.class)
+    @JoinColumn(name="debitAccountId")
+    private List<Transaction> transactionsDebit ;
+    @OneToMany(cascade=CascadeType.ALL, targetEntity=Transaction.class)
+    @JoinColumn(name="creditAccountId")
+    private List<Transaction> transactionsCredit ;
+
     public Account() {
     }
 
@@ -79,5 +88,27 @@ public class Account {
         this.titulaire = titulaire;
     }
 
+    public List<Transaction> getTransactionsDebit() {
+        return transactionsDebit;
+    }
 
+    public void setTransactionsDebit(List<Transaction> transactionsDebit) {
+        this.transactionsDebit = transactionsDebit;
+    }
+
+    public List<Transaction> getTransactionsCredit() {
+        return transactionsCredit;
+    }
+
+    public void setTransactionsCredit(List<Transaction> transactionsCredit) {
+        this.transactionsCredit = transactionsCredit;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 }

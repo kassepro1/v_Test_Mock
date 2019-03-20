@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "account_nature")
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class AccountNature {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String libelle;
-    @OneToMany(cascade=CascadeType.ALL, targetEntity=Inscription.class)
+    @OneToMany(cascade=CascadeType.ALL, targetEntity=Account.class)
     @JoinColumn(name="accountNature")
     private List<Account> accounts;
 

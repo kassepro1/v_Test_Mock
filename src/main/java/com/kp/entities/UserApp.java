@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
+@Entity(name = "user_app")
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class UserApp {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)

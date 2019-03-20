@@ -35,4 +35,6 @@ public interface AccountRepository extends JpaRepository<Account,Integer> {
                     " WHERE c.account_type_id=at.id and c.account_nature_id=an.id and an.libelle like '%Collect%' " +
                     " and c.user_id=:id")
     public List<AccountMapper> getAllGroupAccount(@Param("id") int id);
+
+    public  Account findAccountByNumCompte(String numCompte);
 }

@@ -8,7 +8,7 @@ import com.zaxxer.hikari.*;
 @Configuration
 public class DatabaseConfig {
 
-    @Value("${spring.datasource.url}")
+   @Value("${spring.datasource.url}")
     private String dbUrl;
 
     @Bean
