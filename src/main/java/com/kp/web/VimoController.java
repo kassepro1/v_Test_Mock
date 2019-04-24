@@ -1,9 +1,6 @@
 package com.kp.web;
 
-import com.kp.dTO.AccountDTO;
-import com.kp.dTO.InscriptionDTO;
-import com.kp.dTO.TransactionDTO;
-import com.kp.dTO.UserDTO;
+import com.kp.dTO.*;
 import com.kp.entities.*;
 import com.kp.exception.VimoException;
 import com.kp.mapper.AccountMapper;
@@ -157,10 +154,7 @@ public class VimoController {
         System.out.println(acdto.getAccounType());
         act =accountTypeRepository.findAccountTypeByLibelle(acdto.getAccounType());
         if(act==null){
-            act = new AccountType();
-            act.setLibelle("Bancaire");
-          act = accountTypeRepository.save(act);
-            //throw new VimoException("Accounte Type Invalide ");
+            throw new VimoException("Accounte Type Invalide ");
         }
         a.setAccountType(act);
         a.setIban(acdto.getIban());
@@ -249,5 +243,22 @@ public class VimoController {
         }
         return null;
     }
+    @ApiOperation(value = "Cette methode creer un type de compte ")
+    @PostMapping("/addAccounType")
+    public  ResponseEntity<AccountType> addAccountType(@RequestBody AccounTypeDTO acdto){
 
+
+             AccountType at = new AccountType();
+
+             at.setLibelle(acdto.getLibelle());
+             accountTypeRepository.save(at);
+        return new ResponseEntity<AccountType>(at,HttpStatus.OK);
+    }
+
+    // Liste des Type de compte
+    @ApiOperation(value = "Cette methode permet de lister les types de comptes")
+    @RequestMapping(value = "/acconTypes", method = RequestMethod.GET)
+    public ResponseEntity<List<AccountType>> getAllAccountType( ){
+        return new ResponseEntity<List<AccountType>>(accountTypeRepository.findAll(), HttpStatus.FOUND);
+    }
 }
