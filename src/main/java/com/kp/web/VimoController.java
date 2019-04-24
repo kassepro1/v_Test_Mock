@@ -157,7 +157,10 @@ public class VimoController {
         System.out.println(acdto.getAccounType());
         act =accountTypeRepository.findAccountTypeByLibelle(acdto.getAccounType());
         if(act==null){
-            throw new VimoException("Accounte Type Invalide ");
+            act = new AccountType();
+            act.setLibelle("Bancaire");
+          act = accountTypeRepository.save(act);
+            //throw new VimoException("Accounte Type Invalide ");
         }
         a.setAccountType(act);
         a.setIban(acdto.getIban());
@@ -246,4 +249,5 @@ public class VimoController {
         }
         return null;
     }
+
 }

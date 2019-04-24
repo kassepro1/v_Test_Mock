@@ -25,8 +25,7 @@ public class Account {
     @OneToMany(cascade=CascadeType.ALL, targetEntity=Transaction.class)
     @JoinColumn(name="debitAccountId")
     private List<Transaction> transactionsDebit ;
-    @OneToMany(cascade=CascadeType.ALL, targetEntity=Transaction.class)
-    @JoinColumn(name="creditAccountId")
+
     private List<Transaction> transactionsCredit ;
 
     public Account() {
